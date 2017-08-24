@@ -1,0 +1,10 @@
+language: objective-c
+osx_image: xcode8.3
+env:
+  matrix:
+    - IOS_DEVICE_NAME='iPhone 6', IOS_VERSION=9.0
+    - IOS_DEVICE_NAME='iPhone 7', IOS_VERSION=latest
+script:
+  - xcodebuild -version
+  - xcodebuild -showsdks
+  - xcodebuild clean test -project Loggage/Loggage.xcodeproj -scheme Loggage CODE_SIGNING_REQUIRED=NO -destination "platform=iOS Simulator,name=$IOS_DEVICE_NAME,OS=$IOS_VERSION"
