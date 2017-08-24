@@ -15,7 +15,9 @@ class LoggageTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        Loggage.isDebugInformationEnabled = true
+        Loggage.isLineBreakEnabled = true
+        Loggage.areEmojisEnabled = true
     }
     
     override func tearDown() {
@@ -24,8 +26,48 @@ class LoggageTests: XCTestCase {
     }
     
     func testLog() {
-        Loggage.log("My log message!")
-        XCTAssert(true, "Let's just assume that Apple's 'print' function work for now 😅")
+        Loggage.verbose("Verbosie! Verbosie! Verbosie! Verbosie! Verbosie! Verbosie! Verbosie! Verbosie! Verbosie! Verbosie! Verbosie! Verbosie! Verbosie! Verbosie! Verbosie! Verbosie! Verbosie! Verbosie!")
+        Loggage.debug("Looks like we are looking for some unexpected behaviour.")
+        Loggage.info("Just want to inform you about something. Maybe it is something important?")
+        Loggage.warning("Woops! This is potentially not good, are we sure about this?")
+        Loggage.error("Houston, we've had a problem. This is not right 🚀")
         
+        XCTAssert(true, "Let's just assume that Apple's 'print' function work for now 😅")
+    }
+    
+    func testConsoleLogMessageFormat() {
+        let consoleString: String = self.constructTestConsoleString()
+        XCTAssert(consoleString == "\n🔊 can.swift:1337 - myFunction(): My message")
+    }
+    
+    func testDebugInformation() {
+        var consoleString: String = self.constructTestConsoleString()
+        XCTAssert(consoleString == "\n🔊 can.swift:1337 - myFunction(): My message")
+        
+        Loggage.isDebugInformationEnabled = false
+        consoleString = self.constructTestConsoleString()
+        XCTAssert(consoleString == "\n🔊: My message")
+    }
+    
+    func testLineBreak() {
+        var consoleString: String = self.constructTestConsoleString()
+        XCTAssert(consoleString == "\n🔊 can.swift:1337 - myFunction(): My message")
+        
+        Loggage.isLineBreakEnabled = false
+        consoleString = self.constructTestConsoleString()
+        XCTAssert(consoleString == "🔊 can.swift:1337 - myFunction(): My message")
+    }
+    
+    func testEmojis() {
+        var consoleString: String = self.constructTestConsoleString()
+        XCTAssert(consoleString == "\n🔊 can.swift:1337 - myFunction(): My message")
+        
+        Loggage.areEmojisEnabled = false
+        consoleString = self.constructTestConsoleString()
+        XCTAssert(consoleString == "\nVERBOSE can.swift:1337 - myFunction(): My message")
+    }
+    
+    private func constructTestConsoleString() -> String {
+        return Loggage.constructConsoleString(message: "My message", logLevel: .verbose, file: "file/path/because/i/can.swift", function: "myFunction()", line: 1337)
     }
 }
