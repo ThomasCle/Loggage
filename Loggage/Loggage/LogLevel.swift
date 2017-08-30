@@ -53,5 +53,24 @@ public enum LogLevel: Int {
         
         return emoji
     }
+    
+    func color() -> UIColor {
+        let color: UIColor
+        
+        switch self {
+        case .verbose:
+            color = UIColor.lightGray
+        case .debug:
+            color = UIColor.darkGray
+        case .info:
+            color = UIColor.blue
+        case .warning:
+            color = UIColor.orange
+        case .error:
+            color = UIColor.red
+        }
+        
+        return color
+    }
 
 }

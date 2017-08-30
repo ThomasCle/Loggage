@@ -20,7 +20,13 @@ public class Loggage: NSObject {
     /// Default value is `true`.
     ///
     /// **Note:** Developers who disable this are usually grumpy old men 💩
-    public static var areEmojisEnabled: Bool = true
+    public static var areEmojisEnabled: Bool = true {
+        didSet {
+            if !self.areEmojisEnabled {
+                Loggage.verbose("It looks like we met a grumpy old man! Emojis are disabled. (╯°□°）╯︵ ┻━┻ (no one said anything about ASCII-art, right?")
+            }
+        }
+    }
     
     /// Controls whether file, function and line are printed with the log messages
     ///
@@ -31,6 +37,18 @@ public class Loggage: NSObject {
     /// 
     /// Default value is `true`
     public static var isLineBreakEnabled: Bool = true
+    
+    /// Controls whether the system should flash the user when a log message occurs. ⚡️
+    ///
+    /// See `minimumFlashLogLevel` to control which log levels.
+    ///
+    /// Default value is `false`.
+    public static var isFlashEnabled: Bool = false
+    
+    /// Filters the flashing of log messages. This property defines the minimum log level that should cause flashes.
+    ///
+    /// Default value is `.warning`
+    public static var minimumFlashLevel: LogLevel = .warning
     
     /// Logs a verbose message.
     public static func verbose(_ message: String, file: String = #file, function: String = #function, line: Int = #line) {
@@ -60,7 +78,7 @@ public class Loggage: NSObject {
     
     
     
-    //MARK: - Not public
+    //MARK: - Internals
     static func constructConsoleString(message: String, logLevel: LogLevel, file: String, function: String, line: Int) -> String {
         let tag: String = Loggage.areEmojisEnabled ? logLevel.emoji() : logLevel.name().uppercased()
         let fileName: String = file.components(separatedBy: "/").last ?? "UNKNOWN_FILE"
@@ -69,14 +87,34 @@ public class Loggage: NSObject {
         return "\(lineBreak)\(tag)\(debugInfo): \(message)"
     }
     
-    private static func log( message: String, logLevel: LogLevel, file: String, function: String, line: Int) {
+    
+    //MARK: - Privates
+    private static func log(message: String, logLevel: LogLevel, file: String, function: String, line: Int) {
         if logLevel.rawValue >= self.minimumLogLevel.rawValue {
             let consoleMessage: String = self.constructConsoleString(message: message, logLevel: logLevel, file: file, function: function, line: line)
             Loggage.printToConsole(consoleMessage)
+            
+            if self.isFlashEnabled && logLevel.rawValue >= self.minimumFlashLevel.rawValue {
+                Loggage.flash(forLogLevel: logLevel)
+            }
         }
     }
     
     private static func printToConsole(_ message: String) {
         print(message)
+    }
+    
+    private static func flash(forLogLevel logLevel: LogLevel) {
+        if let window: UIWindow = UIApplication.shared.keyWindow {
+            let view: UIView = UIView(frame: window.bounds)
+            view.backgroundColor = logLevel.color()
+            window.addSubview(view)
+            
+            UIView.animate(withDuration: 0.2, animations: { 
+                view.alpha = 0.0
+            }, completion: { (finished: Bool) in
+                view.removeFromSuperview()
+            })
+        }
     }
 }
