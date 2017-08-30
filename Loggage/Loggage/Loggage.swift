@@ -42,6 +42,8 @@ public class Loggage: NSObject {
     ///
     /// See `minimumFlashLogLevel` to control which log levels.
     ///
+    /// *We strongly advise you to disable this in Release builds!*
+    ///
     /// Default value is `false`.
     public static var isFlashEnabled: Bool = false
     
