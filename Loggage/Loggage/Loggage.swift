@@ -52,6 +52,13 @@ public class Loggage: NSObject {
     /// Default value is `.warning`
     public static var minimumFlashLevel: LogLevel = .warning
     
+    /// Controls whether Loggage will perform prints in the console.
+    ///
+    /// This should be se to `false` when building a Release build.
+    ///
+    /// The default value is `true`.
+    public static var printingEnabled: Bool = true
+    
     /// Logs a verbose message.
     public static func verbose(_ message: String, file: String = #file, function: String = #function, line: Int = #line) {
         Loggage.log(message: message, logLevel: .verbose, file: file, function: function, line: line)
@@ -103,7 +110,9 @@ public class Loggage: NSObject {
     }
     
     private static func printToConsole(_ message: String) {
-        print(message)
+        if self.printingEnabled {
+            print(message)
+        }
     }
     
     private static func flash(forLogLevel logLevel: LogLevel) {

@@ -6,7 +6,7 @@ Light weight logger framework, that allows you to control levels of log messages
 
 ## Installation
 ### Carthage
-`github "ThomasCle/Loggage" ~> 0.0.1`
+`github "ThomasCle/Loggage" ~> 1.0.0`
 
 ## Usage
 ```
@@ -16,6 +16,19 @@ Loggage.info("")
 Loggage.warning("")
 Loggage.error("")
 ```
+
+To avoid writing import in all files you can create an alias in your `AppDelegate`.
+
+```
+import Loggage
+public typealias Log = Loggage
+```
+
+Note that the `Loggage` class will be named `Log` with this alias, so you would be calling this framework through `Log` instead: `Log.info("Info message")`
+
+## Release
+
+You probably don't want the console printing to be active when building a Release. To disable the `print` commands of Loggage you can set the `printingEnabled` property to `false`. It is **recommended** to do so when releasing.
 
 ## Contribution
 1. Fork
