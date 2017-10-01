@@ -57,7 +57,12 @@ public class Loggage: NSObject {
     /// This should be se to `false` when building a Release build.
     ///
     /// The default value is `true`.
-    public static var printingEnabled: Bool = true
+    public static var isPrintingEnabled: Bool = true
+    
+    /// Custom event handler, which will be invoked for all messages allowed by the `minimumLogLevel` property.
+    ///
+    /// This can be used to send log message to Firebase, Fabric Answers or anything you'd like!
+    public static var eventHandler: ILoggageEventHandler?
     
     /// Logs a verbose message.
     public static func verbose(_ message: String, file: String = #file, function: String = #function, line: Int = #line) {
@@ -101,6 +106,7 @@ public class Loggage: NSObject {
     private static func log(message: String, logLevel: LogLevel, file: String, function: String, line: Int) {
         if logLevel.rawValue >= self.minimumLogLevel.rawValue {
             let consoleMessage: String = self.constructConsoleString(message: message, logLevel: logLevel, file: file, function: function, line: line)
+            Loggage.eventHandler?.logging(message: consoleMessage, withLogLevel: logLevel)
             Loggage.printToConsole(consoleMessage)
             
             if self.isFlashEnabled && logLevel.rawValue >= self.minimumFlashLevel.rawValue {
@@ -110,7 +116,7 @@ public class Loggage: NSObject {
     }
     
     private static func printToConsole(_ message: String) {
-        if self.printingEnabled {
+        if self.isPrintingEnabled {
             print(message)
         }
     }
