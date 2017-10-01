@@ -122,16 +122,18 @@ public class Loggage: NSObject {
     }
     
     private static func flash(forLogLevel logLevel: LogLevel) {
-        if let window: UIWindow = UIApplication.shared.keyWindow {
-            let view: UIView = UIView(frame: window.bounds)
-            view.backgroundColor = logLevel.color()
-            window.addSubview(view)
-            
-            UIView.animate(withDuration: 0.2, animations: { 
-                view.alpha = 0.0
-            }, completion: { (finished: Bool) in
-                view.removeFromSuperview()
-            })
+        DispatchQueue.main.async {
+            if let window: UIWindow = UIApplication.shared.keyWindow {
+                let view: UIView = UIView(frame: window.bounds)
+                view.backgroundColor = logLevel.color()
+                window.addSubview(view)
+                
+                UIView.animate(withDuration: 0.2, animations: {
+                    view.alpha = 0.0
+                }, completion: { (finished: Bool) in
+                    view.removeFromSuperview()
+                })
+            }
         }
     }
 }
