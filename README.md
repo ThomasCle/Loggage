@@ -7,7 +7,7 @@ Light weight logger framework, that allows you to control levels of log messages
 
 ## Installation
 ### Carthage
-`github "ThomasCle/Loggage" ~> 1.0.0`
+`github "ThomasCle/Loggage" ~> 1.1.0`
 
 ## Usage
 ```
@@ -26,6 +26,9 @@ public typealias Log = Loggage
 ```
 
 Note that the `Loggage` class will be named `Log` with this alias, so you would be calling this framework through `Log` instead: `Log.info("Info message")`
+
+### Custom tracking
+Loggage allows you to hook into it via an `ILoggageEventHandler` instance. By settings the `eventHandler` property your instance can be invoked every time Loggage performs a log message. This way you can post the log message to Firebase, Fabric Answers, etc.
 
 ## Release
 

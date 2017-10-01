@@ -106,6 +106,7 @@ public class Loggage: NSObject {
     private static func log(message: String, logLevel: LogLevel, file: String, function: String, line: Int) {
         if logLevel.rawValue >= self.minimumLogLevel.rawValue {
             let consoleMessage: String = self.constructConsoleString(message: message, logLevel: logLevel, file: file, function: function, line: line)
+            Loggage.eventHandler?.logging(message: consoleMessage, withLogLevel: logLevel)
             Loggage.printToConsole(consoleMessage)
             
             if self.isFlashEnabled && logLevel.rawValue >= self.minimumFlashLevel.rawValue {
