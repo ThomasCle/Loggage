@@ -68,16 +68,6 @@ class LoggageTests: XCTestCase {
         XCTAssert(consoleString == "\nVERBOSE can.swift:1337 - myFunction(): My message")
     }
     
-    func testTimestamps() {
-        Loggage.isTimestampEnabled = true
-        var consoleString: String = self.constructTestConsoleString()
-        XCTAssert(consoleString == "\n🔊 [\(Date().toString())] can.swift:1337 - myFunction(): My message")
-        
-        Loggage.usesLocalTimeZone = true
-        consoleString = self.constructTestConsoleString()
-        XCTAssert(consoleString == "\n🔊 [\(Date().toString())] can.swift:1337 - myFunction(): My message")
-    }
-    
     private func constructTestConsoleString() -> String {
         return Loggage.constructConsoleString(message: "My message", logLevel: .verbose, file: "file/path/because/i/can.swift", function: "myFunction()", line: 1337)
     }
