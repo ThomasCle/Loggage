@@ -18,6 +18,7 @@ class LoggageTests: XCTestCase {
         Loggage.isDebugInformationEnabled = true
         Loggage.isLineBreakEnabled = true
         Loggage.areEmojisEnabled = true
+        Loggage.isTimestampEnabled = false
     }
     
     override func tearDown() {
@@ -46,7 +47,7 @@ class LoggageTests: XCTestCase {
         
         Loggage.isDebugInformationEnabled = false
         consoleString = self.constructTestConsoleString()
-        XCTAssert(consoleString == "\n🔊: My message")
+        XCTAssert(consoleString == "\n🔊 : My message")
     }
     
     func testLineBreak() {
@@ -65,6 +66,16 @@ class LoggageTests: XCTestCase {
         Loggage.areEmojisEnabled = false
         consoleString = self.constructTestConsoleString()
         XCTAssert(consoleString == "\nVERBOSE can.swift:1337 - myFunction(): My message")
+    }
+    
+    func testTimestamps() {
+        Loggage.isTimestampEnabled = true
+        var consoleString: String = self.constructTestConsoleString()
+        XCTAssert(consoleString == "\n🔊 [\(Date().toString())] can.swift:1337 - myFunction(): My message")
+        
+        Loggage.usesLocalTimeZone = true
+        consoleString = self.constructTestConsoleString()
+        XCTAssert(consoleString == "\n🔊 [\(Date().toString())] can.swift:1337 - myFunction(): My message")
     }
     
     private func constructTestConsoleString() -> String {

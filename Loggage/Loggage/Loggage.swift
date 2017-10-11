@@ -104,12 +104,12 @@ public class Loggage: NSObject {
     
     //MARK: - Internals
     static func constructConsoleString(message: String, logLevel: LogLevel, file: String, function: String, line: Int) -> String {
-        let timestamp: String = self.isTimestampEnabled ? "[\(Date().toString())] " : ""
+        let timestamp: String = self.isTimestampEnabled ? " [\(Date().toString())] " : " "
         let tag: String = self.areEmojisEnabled ? logLevel.emoji() : logLevel.name().uppercased()
         let fileName: String = file.components(separatedBy: "/").last ?? "UNKNOWN_FILE"
-        let debugInfo: String = self.isDebugInformationEnabled ? " \(fileName):\(line) - \(function)" : ""
+        let debugInfo: String = self.isDebugInformationEnabled ? "\(fileName):\(line) - \(function)" : ""
         let lineBreak: String = self.isLineBreakEnabled ? "\n" : ""
-        return "\(timestamp)\(lineBreak)\(tag)\(debugInfo): \(message)"
+        return "\(lineBreak)\(tag)\(timestamp)\(debugInfo): \(message)"
     }
     
     
