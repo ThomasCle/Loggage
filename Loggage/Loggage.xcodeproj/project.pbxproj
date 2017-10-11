@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E919A8111F8EAB79001638A4 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E919A8101F8EAB79001638A4 /* DateExtension.swift */; };
 		E93B54D11F4F2CAB0088F4EF /* Loggage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E93B54C71F4F2CAB0088F4EF /* Loggage.framework */; };
 		E93B54D61F4F2CAB0088F4EF /* LoggageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93B54D51F4F2CAB0088F4EF /* LoggageTests.swift */; };
 		E93B54D81F4F2CAB0088F4EF /* Loggage.h in Headers */ = {isa = PBXBuildFile; fileRef = E93B54CA1F4F2CAB0088F4EF /* Loggage.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -27,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E919A8101F8EAB79001638A4 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		E93B54C71F4F2CAB0088F4EF /* Loggage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Loggage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E93B54CA1F4F2CAB0088F4EF /* Loggage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Loggage.h; sourceTree = "<group>"; };
 		E93B54CB1F4F2CAB0088F4EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -58,6 +60,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E919A80F1F8EAB6D001638A4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E919A8101F8EAB79001638A4 /* DateExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		E93B54BD1F4F2CAB0088F4EF = {
 			isa = PBXGroup;
 			children = (
@@ -79,6 +89,7 @@
 		E93B54C91F4F2CAB0088F4EF /* Loggage */ = {
 			isa = PBXGroup;
 			children = (
+				E919A80F1F8EAB6D001638A4 /* Extensions */,
 				E93B54CA1F4F2CAB0088F4EF /* Loggage.h */,
 				E93B54CB1F4F2CAB0088F4EF /* Info.plist */,
 				E93B54E11F4F2D200088F4EF /* Loggage.swift */,
@@ -211,6 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E987DFB11F80DCEF00533CEB /* ILoggageEventHandler.swift in Sources */,
+				E919A8111F8EAB79001638A4 /* DateExtension.swift in Sources */,
 				E93B54E21F4F2D200088F4EF /* Loggage.swift in Sources */,
 				E93B54E41F4F2FF20088F4EF /* LogLevel.swift in Sources */,
 			);

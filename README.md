@@ -7,7 +7,7 @@ Light weight logger framework, that allows you to control levels of log messages
 
 ## Installation
 ### Carthage
-`github "ThomasCle/Loggage" ~> 1.1.0`
+`github "ThomasCle/Loggage" ~> 1.1.1`
 
 ## Usage
 ```

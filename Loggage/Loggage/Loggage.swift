@@ -23,7 +23,7 @@ public class Loggage: NSObject {
     public static var areEmojisEnabled: Bool = true {
         didSet {
             if !self.areEmojisEnabled {
-                Loggage.verbose("It looks like we met a grumpy old man! Emojis are disabled. (╯°□°）╯︵ ┻━┻ (no one said anything about ASCII-art, right?")
+                self.verbose("It looks like we met a grumpy old man! Emojis are disabled. (╯°□°）╯︵ ┻━┻ (no one said anything about ASCII-art, right?")
             }
         }
     }
@@ -59,6 +59,16 @@ public class Loggage: NSObject {
     /// The default value is `true`.
     public static var isPrintingEnabled: Bool = true
     
+    /// Controls whether log messages will be timestamped. Set this property to `false` to remove timestamps from log messages.
+    ///
+    /// Default value is `true`.
+    public static var isTimestampEnabled: Bool = true
+    
+    /// Controls whether timestamps are printed according to the time zone of the device.
+    ///
+    /// Default value is `false` and will cause UTC timestamps.
+    public static var usesLocalTimeZone: Bool = false
+    
     /// Custom event handler, which will be invoked for all messages allowed by the `minimumLogLevel` property.
     ///
     /// This can be used to send log message to Firebase, Fabric Answers or anything you'd like!
@@ -66,27 +76,27 @@ public class Loggage: NSObject {
     
     /// Logs a verbose message.
     public static func verbose(_ message: String, file: String = #file, function: String = #function, line: Int = #line) {
-        Loggage.log(message: message, logLevel: .verbose, file: file, function: function, line: line)
+        self.log(message: message, logLevel: .verbose, file: file, function: function, line: line)
     }
 
     /// Logs a debug message.
     public static func debug(_ message: String, file: String = #file, function: String = #function, line: Int = #line) {
-        Loggage.log(message: message, logLevel: .debug, file: file, function: function, line: line)
+        self.log(message: message, logLevel: .debug, file: file, function: function, line: line)
     }
     
     /// Logs an info message.
     public static func info(_ message: String, file: String = #file, function: String = #function, line: Int = #line) {
-        Loggage.log(message: message, logLevel: .info, file: file, function: function, line: line)
+        self.log(message: message, logLevel: .info, file: file, function: function, line: line)
     }
     
     /// Logs a warning message.
     public static func warning(_ message: String, file: String = #file, function: String = #function, line: Int = #line) {
-        Loggage.log(message: message, logLevel: .warning, file: file, function: function, line: line)
+        self.log(message: message, logLevel: .warning, file: file, function: function, line: line)
     }
     
     /// Logs an error message.
     public static func error(_ message: String, file: String = #file, function: String = #function, line: Int = #line) {
-        Loggage.log(message: message, logLevel: .error, file: file, function: function, line: line)
+        self.log(message: message, logLevel: .error, file: file, function: function, line: line)
     }
     
     
@@ -94,11 +104,12 @@ public class Loggage: NSObject {
     
     //MARK: - Internals
     static func constructConsoleString(message: String, logLevel: LogLevel, file: String, function: String, line: Int) -> String {
-        let tag: String = Loggage.areEmojisEnabled ? logLevel.emoji() : logLevel.name().uppercased()
+        let timestamp: String = self.isTimestampEnabled ? "[\(Date().toString())] " : ""
+        let tag: String = self.areEmojisEnabled ? logLevel.emoji() : logLevel.name().uppercased()
         let fileName: String = file.components(separatedBy: "/").last ?? "UNKNOWN_FILE"
-        let debugInfo: String = Loggage.isDebugInformationEnabled ? " \(fileName):\(line) - \(function)" : ""
-        let lineBreak: String = Loggage.isLineBreakEnabled ? "\n" : ""
-        return "\(lineBreak)\(tag)\(debugInfo): \(message)"
+        let debugInfo: String = self.isDebugInformationEnabled ? " \(fileName):\(line) - \(function)" : ""
+        let lineBreak: String = self.isLineBreakEnabled ? "\n" : ""
+        return "\(timestamp)\(lineBreak)\(tag)\(debugInfo): \(message)"
     }
     
     
@@ -106,11 +117,11 @@ public class Loggage: NSObject {
     private static func log(message: String, logLevel: LogLevel, file: String, function: String, line: Int) {
         if logLevel.rawValue >= self.minimumLogLevel.rawValue {
             let consoleMessage: String = self.constructConsoleString(message: message, logLevel: logLevel, file: file, function: function, line: line)
-            Loggage.eventHandler?.logging(message: consoleMessage, withLogLevel: logLevel)
-            Loggage.printToConsole(consoleMessage)
+            self.eventHandler?.logging(message: consoleMessage, withLogLevel: logLevel)
+            self.printToConsole(consoleMessage)
             
             if self.isFlashEnabled && logLevel.rawValue >= self.minimumFlashLevel.rawValue {
-                Loggage.flash(forLogLevel: logLevel)
+                self.flash(forLogLevel: logLevel)
             }
         }
     }
