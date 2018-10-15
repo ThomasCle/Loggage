@@ -89,6 +89,11 @@ public class Loggage: NSObject {
         self.log(message: message, logLevel: .info, file: file, function: function, line: line)
     }
     
+    /// Logs a todo message.
+    public static func todo(_ message: String, file: String = #file, function: String = #function, line: Int = #line) {
+        self.log(message: message, logLevel: .todo, file: file, function: function, line: line)
+    }
+    
     /// Logs a warning message.
     public static func warning(_ message: String, file: String = #file, function: String = #function, line: Int = #line) {
         self.log(message: message, logLevel: .warning, file: file, function: function, line: line)

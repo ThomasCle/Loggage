@@ -13,6 +13,7 @@ public enum LogLevel: Int {
     case verbose
     case debug
     case info
+    case todo
     case warning
     case error
     
@@ -26,6 +27,8 @@ public enum LogLevel: Int {
             name = "Debug"
         case .info:
             name = "Info"
+        case .todo:
+            name = "TODO"
         case .warning:
             name = "Warning"
         case .error:
@@ -45,6 +48,8 @@ public enum LogLevel: Int {
             emoji = "🐞"
         case .info:
             emoji = "ℹ️"
+        case .todo:
+            emoji = "🛠"
         case .warning:
             emoji = "⚠️"
         case .error:
@@ -64,6 +69,8 @@ public enum LogLevel: Int {
             color = UIColor.darkGray
         case .info:
             color = UIColor.blue
+        case .todo:
+            color = UIColor.magenta
         case .warning:
             color = UIColor.orange
         case .error:
