@@ -30,6 +30,7 @@ class LoggageTests: XCTestCase {
         Loggage.verbose("Verbosie! Verbosie! Verbosie! Verbosie! Verbosie! Verbosie! Verbosie! Verbosie! Verbosie! Verbosie! Verbosie! Verbosie! Verbosie! Verbosie! Verbosie! Verbosie! Verbosie! Verbosie!")
         Loggage.debug("Looks like we are looking for some unexpected behaviour.")
         Loggage.info("Just want to inform you about something. Maybe it is something important?")
+        Loggage.todo("Remember to do something about this... Or maybe you should do it now?")
         Loggage.warning("Woops! This is potentially not good, are we sure about this?")
         Loggage.error("Houston, we've had a problem. This is not right 🚀")
         
