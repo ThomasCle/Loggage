@@ -1,9 +1,9 @@
 language: objective-c
-osx_image: xcode9
+osx_image: xcode10.2
 env:
   matrix:
     - IOS_DEVICE_NAME='iPhone 6', IOS_VERSION=9.0
-    - IOS_DEVICE_NAME='iPhone 7', IOS_VERSION=latest
+    - IOS_DEVICE_NAME='iPhone 8', IOS_VERSION=latest
 script:
   - xcodebuild -version
   - xcodebuild -showsdks

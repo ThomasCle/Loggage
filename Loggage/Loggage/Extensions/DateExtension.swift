@@ -12,7 +12,7 @@ fileprivate let dateFormatter: DateFormatter = DateFormatter()
 
 extension Date {
     func toString() -> String {
-        dateFormatter.dateFormat = "yyyy-MM-dd, HH:m:ss.SSS"
+        dateFormatter.dateFormat = "yyyy-MM-dd, HH:mm:ss.SSS"
         dateFormatter.timeZone = Loggage.usesLocalTimeZone ? TimeZone.current : TimeZone(abbreviation: "UTC")
         return dateFormatter.string(from: self)
     }

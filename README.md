@@ -1,13 +1,13 @@
 # Loggage
 ![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)
 ![Build status](https://travis-ci.org/ThomasCle/Loggage.svg?branch=master)
-![Swift version](https://img.shields.io/badge/Swift-4.0-F16D39.svg?style=flat)
+![Swift version](https://img.shields.io/badge/Swift-5.0-F16D39.svg?style=flat)
 
 Light weight logger framework, that allows you to control levels of log messages. The framework is highly customizable and contains simple features to improve the visibility of your log messages, such as flashing the screen when an error occurs.
 
 ## Installation
 ### Carthage
-`github "ThomasCle/Loggage" ~> 1.1.1`
+`github "ThomasCle/Loggage" ~> 1.2.0`
 
 ## Usage
 ```

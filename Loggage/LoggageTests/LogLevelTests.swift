@@ -25,14 +25,16 @@ class LogLevelTests: XCTestCase {
         XCTAssert(LogLevel.verbose.rawValue == 0)
         XCTAssert(LogLevel.debug.rawValue == 1)
         XCTAssert(LogLevel.info.rawValue == 2)
-        XCTAssert(LogLevel.warning.rawValue == 3)
-        XCTAssert(LogLevel.error.rawValue == 4)
+        XCTAssert(LogLevel.todo.rawValue == 3)
+        XCTAssert(LogLevel.warning.rawValue == 4)
+        XCTAssert(LogLevel.error.rawValue == 5)
     }
     
     func testEmoji() {
         XCTAssert(LogLevel.verbose.emoji() == "🔊")
         XCTAssert(LogLevel.debug.emoji() == "🐞")
         XCTAssert(LogLevel.info.emoji() == "ℹ️")
+        XCTAssert(LogLevel.todo.emoji() == "🛠")
         XCTAssert(LogLevel.warning.emoji() == "⚠️")
         XCTAssert(LogLevel.error.emoji() == "‼️")
     }
@@ -41,6 +43,7 @@ class LogLevelTests: XCTestCase {
         XCTAssert(LogLevel.verbose.name() == "Verbose")
         XCTAssert(LogLevel.debug.name() == "Debug")
         XCTAssert(LogLevel.info.name() == "Info")
+        XCTAssert(LogLevel.todo.name() == "TODO")
         XCTAssert(LogLevel.warning.name() == "Warning")
         XCTAssert(LogLevel.error.name() == "Error")
     }
