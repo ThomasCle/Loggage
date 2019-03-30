@@ -104,9 +104,6 @@ public class Loggage: NSObject {
         self.log(message: message, logLevel: .error, file: file, function: function, line: line)
     }
     
-    
-    
-    
     //MARK: - Internals
     static func constructConsoleString(message: String, logLevel: LogLevel, file: String, function: String, line: Int) -> String {
         let timestamp: String = self.isTimestampEnabled ? " [\(Date().toString())] " : " "

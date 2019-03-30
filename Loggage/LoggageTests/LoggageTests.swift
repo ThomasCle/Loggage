@@ -34,7 +34,7 @@ class LoggageTests: XCTestCase {
         Loggage.warning("Woops! This is potentially not good, are we sure about this?")
         Loggage.error("Houston, we've had a problem. This is not right 🚀")
         
-        XCTAssert(true, "Let's just assume that Apple's 'print' function work for now 😅")
+        XCTAssert(true, "Let's just assume that Apple's 'print' function works for now 😅")
     }
     
     func testConsoleLogMessageFormat() {
