@@ -6,7 +6,7 @@
 //  Copyright © 2017 ThomasCle. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 public class Loggage: NSObject {
     
