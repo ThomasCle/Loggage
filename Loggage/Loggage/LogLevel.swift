@@ -6,8 +6,7 @@
 //  Copyright © 2017 ThomasCle. All rights reserved.
 //
 
-import Foundation
-
+import UIKit
 
 public enum LogLevel: Int {
     case verbose
