@@ -39,7 +39,7 @@
 		E93B54E31F4F2FF20088F4EF /* LogLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogLevel.swift; sourceTree = "<group>"; };
 		E93B54E51F4F3AAC0088F4EF /* LogLevelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogLevelTests.swift; sourceTree = "<group>"; };
 		E987DFB01F80DCEF00533CEB /* ILoggageEventHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ILoggageEventHandler.swift; sourceTree = "<group>"; };
-		E9FAB44924A1E97F000A3657 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		E9FAB44A24A1EA47000A3657 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Package.swift; path = ../Package.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,7 +72,7 @@
 		E93B54BD1F4F2CAB0088F4EF = {
 			isa = PBXGroup;
 			children = (
-				E9FAB44924A1E97F000A3657 /* Package.swift */,
+				E9FAB44A24A1EA47000A3657 /* Package.swift */,
 				E93B54C91F4F2CAB0088F4EF /* Loggage */,
 				E93B54D41F4F2CAB0088F4EF /* LoggageTests */,
 				E93B54C81F4F2CAB0088F4EF /* Products */,
