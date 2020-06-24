@@ -17,10 +17,12 @@ let package = Package(
         .target(
             name: "Loggage",
             dependencies: [],
-            path: "./Loggage"),
+            path: ".",
+            sources: "./Loggage"),
         .testTarget(
             name: "LoggageTests",
             dependencies: ["Loggage"],
-            path: "./LoggageTests"),
+            path: ".",
+            sources: "./LoggageTests"),
     ]
 )
