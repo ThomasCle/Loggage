@@ -114,6 +114,23 @@ public class Loggage: NSObject {
         return "\(lineBreak)\(tag)\(timestamp)\(debugInfo): \(message)"
     }
     
+    static func log(_ message: String, for level: LogLevel) {
+        switch level {
+        case .verbose:
+            verbose(message)
+        case .debug:
+            debug(message)
+        case .info:
+            info(message)
+        case .todo:
+            todo(message)
+        case .warning:
+            warning(message)
+        case .error:
+            error(message)
+        }
+    }
+    
     
     //MARK: - Privates
     private static func log(message: String, logLevel: LogLevel, file: String, function: String, line: Int) {
