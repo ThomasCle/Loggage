@@ -17,7 +17,7 @@ public struct LoggagePropertySetter : OptionSet {
 }
 
 @propertyWrapper
-public struct LogSet<T> {
+public struct LoggageSet<T> {
     public let options: LoggagePropertySetter
     public let logLevel: LogLevel
     public let propertyName: String
@@ -32,13 +32,13 @@ public struct LogSet<T> {
     public var wrappedValue: T {
         willSet {
             if (options.contains(.willSet)) {
-                Loggage.log("Will set \(propertyName) = \(newValue) (current value is: \(wrappedValue))", for: logLevel)
+                Loggage.log("Will set \(propertyName) (\(wrappedValue) ➡️ \(newValue))", for: logLevel)
             }
         }
         
         didSet {
             if (options.contains(.didSet)) {
-                Loggage.log("Did set \(propertyName) = \(wrappedValue) (previous value was: \(oldValue))", for: logLevel)
+                Loggage.log("Did set \(propertyName) (\(oldValue) ➡️ \(wrappedValue)", for: logLevel)
             }
         }
     }
