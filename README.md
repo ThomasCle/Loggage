@@ -6,8 +6,11 @@
 Light weight logger framework, that allows you to control levels of log messages. The framework is highly customizable and contains simple features to improve the visibility of your log messages, such as flashing the screen when an error occurs.
 
 ## Installation
+
+Using Swift Package Manager is recommended.
+
 ### Carthage
-`github "ThomasCle/Loggage" ~> 1.2.0`
+`github "ThomasCle/Loggage" ~> 1.3.0`
 
 ## Usage
 ```

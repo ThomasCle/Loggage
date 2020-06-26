@@ -1,5 +1,5 @@
 language: objective-c
-osx_image: xcode10.2
+osx_image: xcode11.5
 env:
   matrix:
     - IOS_DEVICE_NAME='iPhone 6', IOS_VERSION=9.0
