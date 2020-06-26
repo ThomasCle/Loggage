@@ -1,4 +1,10 @@
 language: objective-c
-xcode_project: Loggage.xcodeproj # path to your xcodeproj folder
-xcode_scheme: Loggage
-xcode_destination: platform=iOS Simulator,OS=latest,name=iPhone XS
+osx_image: xcode11.5
+env:
+  matrix:
+    - IOS_DEVICE_NAME='iPhone 6', IOS_VERSION=9.0
+    - IOS_DEVICE_NAME='iPhone 8', IOS_VERSION=latest
+script:
+  - xcodebuild -version
+  - xcodebuild -showsdks
+  - xcodebuild clean test -project Loggage/Loggage.xcodeproj -scheme Loggage CODE_SIGNING_REQUIRED=NO -destination "platform=iOS Simulator,name=$IOS_DEVICE_NAME,OS=$IOS_VERSION"
