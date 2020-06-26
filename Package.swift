@@ -4,7 +4,7 @@ import PackageDescription
 let package = Package(
     name: "Loggage",
     platforms: [
-           .iOS(.v9)
+        .iOS(.v9)
     ],
     products: [
         .library(
@@ -14,10 +14,11 @@ let package = Package(
     dependencies: [
     ],
     targets: [
-        .target(
-            name: "Loggage",
-            dependencies: [],
-            path: ".",
-            sources: "./Loggage")
+        .target(name: "Loggage",
+                dependencies: [],
+                path: "Loggage/Loggage"),
+        .testTarget(name: "LoggageTests",
+                    dependencies: ["Loggage"],
+                    path: "Loggage/LoggageTests"),
     ]
 )
